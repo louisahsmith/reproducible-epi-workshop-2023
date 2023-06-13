@@ -1,0 +1,48 @@
+---
+title: "My analysis"
+format: 
+  html: default
+  docx: default
+execute: 
+  echo: false
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(gtsummary)
+library(targets)
+tar_load(cleaned_data)
+tar_load(table_1)
+tar_load(linear_table)
+tar_load(logistic_table)
+tar_load(beautiful_figure)
+```
+
+There were `r scales::comma(nrow(cleaned_data))` participants in the dataset. Of these `r inline_text(table_1, eyesight_cat, level = "Excellent", column = "Male")` of the male and `r inline_text(table_1, eyesight_cat, level = "Excellent", column = "Female")` of the female participants had excellent eyesight (@tbl-one).
+
+```{r}
+#| label: tbl-one
+#| tbl-cap: "Descriptive characteristics of the participants"
+table_1 |> as_flex_table()
+# also try: table_1 |> as_gt() |> as_word() 
+# but currently seems to have a (breaking) bug
+```
+
+There was an interaction between sex and age at first birth in a linear model for income (@tbl-linear).
+
+```{r}
+#| label: tbl-linear
+#| tbl-cap: "Linear regressions of income on sex, age at first birth, and race/ethnicity, with and without an interaction term"
+linear_table |> as_flex_table()
+```
+
+The results of the logistic regression for the probability of wearing glasses were suprising. People with poor eyesight were equally likely to wear glasses as those with excellent eyesight, with an OR of `r inline_text(logistic_table, variable = eyesight_cat, level = "Poor")`. However, women had `r inline_text(logistic_table, variable = sex_cat, level = "Female", pattern = "{estimate}")` times the probability of wearing glasses as men `r inline_text(logistic_table, variable = sex_cat, level = "Female", pattern = "({p.value})")`.
+
+Finally, we visually compared the distribution of eyesight quality among people who do and don't wear glasses (@fig-beautiful).
+
+```{r}
+#| label: fig-beautiful
+#| fig-cap: "Beautiful figure showing something"
+beautiful_figure
+```
