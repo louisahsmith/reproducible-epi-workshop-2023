@@ -10,3 +10,8 @@ fit_logistic_model <- function(cleaned_data) {
   glm(glasses ~ eyesight_cat + sex_cat + income, 
       data = cleaned_data, family = binomial())
 }
+
+fit_poisson_model <- function(cleaned_data) {
+  glm(nsibs ~ eyesight_cat + sex_cat + income, 
+      data = cleaned_data, family = poisson())
+}

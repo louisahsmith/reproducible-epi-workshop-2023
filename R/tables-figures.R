@@ -19,6 +19,16 @@ make_table_1 <- function(cleaned_data) {
   modify_header(label = "**Variable**", p.value = "**P**")
 }
 
+make_poisson_reg_table <- function(poisson_model) {
+  tbl_regression(
+    poisson_model, 
+    exponentiate = TRUE,
+    label = list(
+      sex_cat ~ "Sex",
+      eyesight_cat ~ "Eyesight",
+      income ~ "Income"
+    ))
+}
 
 make_linear_reg_table <- function(linear_model, linear_model_int) {
   tbl_no_int <- tbl_regression(

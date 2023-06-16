@@ -36,6 +36,10 @@ model_targets <- list(
   tar_target(
     logistic_model,
     fit_logistic_model(cleaned_data)
+  ),
+  tar_target(
+    poisson_model,
+    fit_poisson_model(cleaned_data)
   )
 )
 
@@ -51,6 +55,10 @@ table_targets <- list(
   tar_target(
     logistic_table,
     make_logistic_reg_table(logistic_model)
+  ),  
+  tar_target(
+    poisson_table,
+    make_poisson_reg_table(poisson_model)
   ),
   tar_target(
     beautiful_figure,

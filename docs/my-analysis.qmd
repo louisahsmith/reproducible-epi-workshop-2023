@@ -16,6 +16,7 @@ tar_load(cleaned_data)
 tar_load(table_1)
 tar_load(linear_table)
 tar_load(logistic_table)
+tar_load(poisson_table)
 tar_load(beautiful_figure)
 ```
 
@@ -45,4 +46,12 @@ Finally, we visually compared the distribution of eyesight quality among people 
 #| label: fig-beautiful
 #| fig-cap: "Beautiful figure showing something"
 beautiful_figure
+```
+
+Also, here's a table for a Poisson regression!
+
+```{r}
+#| label: tbl-poisson
+#| tbl-cap: "Poisson regression"
+poisson_table |> as_flex_table()
 ```
