@@ -67,5 +67,8 @@ report_targets <- list(
 
 list(data_targets,
      model_targets,
-     table_targets,
-     report_targets)
+     table_targets
+     # not working and I'm not sure why
+     # ,
+     # report_targets
+     )
